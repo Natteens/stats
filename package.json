@@ -1,12 +1,12 @@
 {
-  "name": "com.natteens.statsforge",
+  "name": "com.natteens.stats",
   "version": "0.1.1",
-  "displayName": "StatsForge",
-  "description": "Sistema modular de atributos com modificadores temporais, suporte a runtime e interface visual completa para Unity.",
+  "displayName": "Stats",
+  "description": "Modular stats system for Unity: ordered calculation pipeline, GUID-backed stat identity, timed modifiers, and stat-bound resources.",
   "keywords": [
     "Unity",
     "GameDev",
-    "StatsForge"
+    "Stats"
   ],
   "author": {
     "name": "Natteens",
@@ -14,7 +14,29 @@
     "url": "https://github.com/Natteens"
   },
   "unity": "6000.0",
-  "documentationUrl": "https://github.com/Natteens/statsforge",
-  "changelogUrl": "https://github.com/Natteens/statsforge/blob/main/CHANGELOG.md",
-  "licensesUrl": "https://github.com/Natteens/statsforge/blob/main/LICENSE.md"
+  "documentationUrl": "https://github.com/Natteens/stats",
+  "changelogUrl": "https://github.com/Natteens/stats/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/Natteens/stats/blob/main/LICENSE.md",
+  "samples": [
+    {
+      "displayName": "01 Basic Entity",
+      "description": "Preset-driven StatSheet on an entity.",
+      "path": "Samples~/01-BasicEntity"
+    },
+    {
+      "displayName": "02 Item Modifiers",
+      "description": "Grouped modifier apply and source-based removal.",
+      "path": "Samples~/02-ItemModifiers"
+    },
+    {
+      "displayName": "03 Timed Buff",
+      "description": "Auto-expiring timed modifier driven by the timer module.",
+      "path": "Samples~/03-TimedBuff"
+    },
+    {
+      "displayName": "04 Health Resource",
+      "description": "RuntimeResource bound to a max stat with max-change policies.",
+      "path": "Samples~/04-HealthResource"
+    }
+  ]
 }

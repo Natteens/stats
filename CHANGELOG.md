@@ -1,43 +1,11 @@
-## [0.1.1](https://github.com/Natteens/statsforge/compare/v0.1.0...v0.1.1) (2025-11-16)
+# Changelog
 
+All notable changes to this project are documented in this file.
 
-### Bug Fixes
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-* Refactor AttributesEditorWindow to modular tabbed UI ([c573d9b](https://github.com/Natteens/statsforge/commit/c573d9b25dc2fc5b9892b89b3367889ab4333228))
+## [Unreleased]
 
-# 📝 Changelog
-
-Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
-
-O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
-e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Não Lançado]
-
-## [0.1.0] - 2025-10-01
-
-### Adicionado
-- ✨ Estrutura inicial do pacote Unity
-- 📦 Configuração do Package Manager
-- 📚 Documentação básica
-- 🧪 Estrutura de testes
-- 📋 Exemplos e amostras
-
-### Mudado
-- Nada ainda
-
-### Removido
-- Nada ainda
-
-### Corrigido
-- Nada ainda
-
----
-
-Os tipos de mudanças são:
-- **Adicionado** para novas funcionalidades
-- **Mudado** para mudanças em funcionalidades existentes
-- **Depreciado** para funcionalidades que serão removidas em breve
-- **Removido** para funcionalidades removidas
-- **Corrigido** para correções de bugs
-- **Segurança** para vulnerabilidades
+### Added
+- Initial UPM package scaffold (folder structure, asmdefs, package manifest).
