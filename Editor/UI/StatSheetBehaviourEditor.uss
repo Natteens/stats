@@ -1,0 +1,43 @@
+.ssb-section-heading {
+    margin-bottom: 3px;
+}
+
+.ssb-heading-label {
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+
+.ssb-refresh {
+    flex-grow: 0;
+    height: 19px;
+    margin-left: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 9px;
+}
+
+.ssb-preview-row {
+    background-color: rgba(128, 128, 128, 0.035);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(128, 128, 128, 0.12);
+    border-radius: 3px;
+    padding: 4px 5px;
+    margin-bottom: 2px;
+    font-size: 10px;
+}
+
+.ssb-preview-invalid {
+    border-left-width: 2px;
+    border-left-color: rgba(205, 115, 75, 0.7);
+}
+
+.ssb-row-name {
+    -unity-font-style: bold;
+    font-size: 11px;
+}
+
+.ssb-row-detail {
+    font-size: 10px;
+    opacity: 0.82;
+    white-space: normal;
+}

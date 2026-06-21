@@ -1,0 +1,115 @@
+.stats-root {
+    padding: 2px 1px 5px 1px;
+}
+
+.stats-card {
+    background-color: rgba(128, 128, 128, 0.055);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(128, 128, 128, 0.18);
+    border-radius: 4px;
+    padding: 6px 7px;
+    margin-bottom: 5px;
+}
+
+.stats-header-card {
+    background-color: rgba(128, 128, 128, 0.075);
+    padding: 7px 8px;
+}
+
+.stats-title {
+    -unity-font-style: bold;
+    font-size: 13px;
+    white-space: normal;
+}
+
+.stats-subtitle {
+    font-size: 9px;
+    opacity: 0.58;
+}
+
+.stats-help {
+    font-size: 9px;
+    opacity: 0.6;
+    white-space: normal;
+    margin-top: 2px;
+}
+
+.stats-section-header {
+    -unity-font-style: bold;
+    font-size: 10px;
+    opacity: 0.78;
+    margin-bottom: 4px;
+}
+
+.stats-header-row,
+.stats-toolbar,
+.stats-inline-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.stats-header-copy {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 5px;
+}
+
+.stats-pill {
+    border-radius: 8px;
+    padding: 1px 6px;
+    font-size: 8px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    flex-shrink: 0;
+}
+
+.stats-pill-ok {
+    background-color: rgba(70, 150, 85, 0.14);
+    color: rgb(105, 175, 115);
+}
+
+.stats-pill-warn {
+    background-color: rgba(190, 130, 50, 0.14);
+    color: rgb(200, 150, 80);
+}
+
+.stats-pill-error {
+    background-color: rgba(185, 70, 65, 0.14);
+    color: rgb(210, 110, 105);
+}
+
+.stats-pill-info {
+    background-color: rgba(70, 125, 180, 0.14);
+    color: rgb(100, 155, 205);
+}
+
+.stats-empty {
+    -unity-text-align: middle-center;
+    font-size: 11px;
+    opacity: 0.58;
+    padding: 9px 5px;
+    white-space: normal;
+}
+
+.stats-warning-stack > * {
+    margin-top: 3px;
+}
+
+.stats-toolbar {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.stats-toolbar > Button {
+    flex-grow: 0;
+    margin-right: 3px;
+    margin-bottom: 2px;
+    height: 20px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.stats-field-row {
+    margin-bottom: 2px;
+}

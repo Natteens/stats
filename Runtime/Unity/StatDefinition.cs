@@ -13,7 +13,7 @@ namespace Stats
         [SerializeField] private bool hasMax;
         [SerializeField] private float max;
         [SerializeField] private bool percentDisplay;
-        [SerializeField, TextArea] private string description;
+        [SerializeField, HideInInspector] private string description;
 
         public string DisplayName => displayName;
         public float DefaultBase => defaultBase;

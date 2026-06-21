@@ -4,8 +4,18 @@ This package includes third-party software components.
 
 ## GameInit Timers
 
-The timer module (`Runtime/Timers`) is derived from the timers in
-`com.natteens.gameinit`, re-namespaced to `Stats.Timers`.
+The timer module under `Runtime/Timers` is copied and adapted from the
+`com.natteens.gameinit` package (https://github.com/Natteens/GameInit,
+commit 4597d189), originally under `Runtime/Timers`.
+
+Adapted files: `Timer`, `CountdownTimer`, `StopwatchTimer`, `FrequencyTimer`,
+`IntervalTimer`, and the `Core` plumbing `TimerManager`, `ListExtensions`,
+`PlayerLoopUtils`, `TimerBootstrapper`.
+
+Adaptations: namespaces re-mapped from `GameInit.Timers` / `GameInit.Timers.Core`
+to `Stats` / `Stats.Timers.Core`; XML documentation comments removed; the
+`UnityEditor` using directive in `TimerBootstrapper` guarded with `#if UNITY_EDITOR`.
+Timer runtime behavior is unchanged.
 
 License: MIT
 

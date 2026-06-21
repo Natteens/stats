@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="smd-shell">
+        <ui:VisualElement name="smd-row" class="smd-row">
+            <uie:PropertyField name="smd-stat" binding-path="stat" label="" class="smd-stat" tooltip="Stat Definition" />
+            <ui:VisualElement class="smd-operation-value">
+                <uie:PropertyField name="smd-op" binding-path="operation" label="" class="smd-op" tooltip="Modifier operation" />
+                <ui:VisualElement class="smd-value-wrap">
+                    <ui:FloatField name="smd-value" class="smd-value" tooltip="Modifier value" />
+                    <ui:Label name="smd-percent" text="%" class="smd-percent" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label name="smd-warn" text="!" class="smd-warn" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

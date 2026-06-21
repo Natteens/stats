@@ -1,0 +1,43 @@
+.sd-id-status {
+    margin-left: 4px;
+}
+
+.sd-id-ok {
+    background-color: rgba(70, 150, 85, 0.22);
+    color: rgb(110, 190, 120);
+}
+
+.sd-id-bad {
+    background-color: rgba(185, 90, 55, 0.22);
+    color: rgb(225, 140, 90);
+}
+
+.sd-display-name {
+    margin-top: 5px;
+}
+
+.sd-simple-row,
+.sd-clamp-row {
+    flex-direction: row;
+    align-items: center;
+    min-height: 20px;
+}
+
+.sd-row-label {
+    width: 105px;
+    min-width: 80px;
+    flex-shrink: 1;
+    font-size: 10px;
+    white-space: normal;
+}
+
+.sd-row-field {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 70px;
+}
+
+.sd-toggle {
+    flex-shrink: 0;
+    margin-right: 6px;
+}

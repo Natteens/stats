@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="stats-root">
+        <ui:VisualElement class="stats-card stats-header-card">
+            <ui:VisualElement class="stats-header-row">
+                <ui:VisualElement class="stats-header-copy">
+                    <ui:Label name="ssp-title" class="stats-title" />
+                    <ui:Label text="Stat Sheet Preset" class="stats-subtitle" />
+                </ui:VisualElement>
+                <ui:Label name="ssp-count" class="stats-pill stats-pill-info" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="stats-card">
+            <ui:Label text="Base Stats" class="stats-section-header" />
+            <ui:VisualElement class="stats-toolbar ssp-toolbar">
+                <ui:Button name="ssp-add" text="Add Stat" />
+                <ui:Button name="ssp-sort" text="Sort by Display Name" />
+                <ui:Button name="ssp-clean" text="Remove Null Entries" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ssp-list" />
+            <ui:Label name="ssp-empty" text="No base stats yet. Use Add Stat." class="stats-empty" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -6,6 +6,7 @@
         "Stats.Unity",
         "Stats.Timers",
         "Stats.Resources",
+        "Stats.Editor",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

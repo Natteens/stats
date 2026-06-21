@@ -1,0 +1,47 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="stats-root">
+        <ui:VisualElement class="stats-card stats-header-card">
+            <ui:VisualElement class="stats-header-row">
+                <ui:VisualElement class="stats-header-copy">
+                    <ui:Label name="sd-title" class="stats-title" />
+                    <ui:Label text="Stat Definition" class="stats-subtitle" />
+                </ui:VisualElement>
+                <ui:Label name="sd-id-status" class="stats-pill sd-id-status" />
+            </ui:VisualElement>
+            <ui:VisualElement class="sd-simple-row sd-display-name">
+                <ui:Label text="Display Name" class="sd-row-label" />
+                <ui:TextField name="sd-displayname" binding-path="displayName" class="sd-row-field" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="stats-card">
+            <ui:Label text="Value" class="stats-section-header" />
+            <ui:VisualElement class="sd-simple-row stats-field-row">
+                <ui:Label text="Default Base" class="sd-row-label" />
+                <ui:FloatField name="sd-base" binding-path="defaultBase" class="sd-row-field" />
+            </ui:VisualElement>
+            <ui:VisualElement class="sd-clamp-row stats-field-row">
+                <ui:Label text="Clamp Min" class="sd-row-label" />
+                <ui:Toggle name="sd-hasmin" binding-path="hasMin" class="sd-toggle" />
+                <ui:FloatField name="sd-min" binding-path="min" class="sd-row-field" />
+            </ui:VisualElement>
+            <ui:VisualElement class="sd-clamp-row stats-field-row">
+                <ui:Label text="Clamp Max" class="sd-row-label" />
+                <ui:Toggle name="sd-hasmax" binding-path="hasMax" class="sd-toggle" />
+                <ui:FloatField name="sd-max" binding-path="max" class="sd-row-field" />
+            </ui:VisualElement>
+            <ui:VisualElement class="sd-simple-row stats-field-row">
+                <ui:Label text="Display As Percent" class="sd-row-label" />
+                <ui:Toggle name="sd-percent" binding-path="percentDisplay" class="sd-toggle" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="stats-warning-stack">
+            <ui:HelpBox name="sd-warn-minmax" text="Clamp Min is greater than Clamp Max." />
+            <ui:HelpBox name="sd-warn-id" text="This stat has no ID. Use Repair Missing ID." />
+            <ui:HelpBox name="sd-warn-dup" text="Duplicate ID detected. Use Regenerate ID." />
+        </ui:VisualElement>
+        <ui:VisualElement class="stats-toolbar">
+            <ui:Button name="sd-repair" text="Repair Missing ID" />
+            <ui:Button name="sd-regen" text="Regenerate ID" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

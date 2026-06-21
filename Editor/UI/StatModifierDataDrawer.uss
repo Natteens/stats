@@ -1,0 +1,57 @@
+.smd-shell {
+    background-color: rgba(128, 128, 128, 0.06);
+    border-left-width: 2px;
+    border-left-color: rgba(128, 128, 128, 0.3);
+    border-radius: 4px;
+    padding: 3px 5px;
+    margin: 1px 0;
+}
+
+.smd-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.smd-stat {
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 82px;
+    margin-right: 5px;
+}
+
+.smd-operation-value {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    flex-basis: 172px;
+}
+
+.smd-op {
+    flex-grow: 1;
+    flex-basis: 96px;
+    margin-right: 5px;
+}
+
+.smd-value-wrap {
+    flex-direction: row;
+    align-items: center;
+    flex-basis: 70px;
+}
+
+.smd-value {
+    flex-grow: 1;
+}
+
+.smd-percent {
+    margin-left: 2px;
+    opacity: 0.7;
+}
+
+.smd-warn {
+    width: 14px;
+    margin-left: 4px;
+    color: rgb(225, 120, 90);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
