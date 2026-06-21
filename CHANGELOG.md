@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/Natteens/stats/compare/v0.2.0...v0.3.0) (2026-06-21)
+
+
+### Features
+
+* Add core stats system, docs, and samples ([d44bd4e](https://github.com/Natteens/stats/commit/d44bd4e1d10c120dc022f1eee562545f063d03e1))
+
 # [0.2.0](https://github.com/Natteens/stats/compare/v0.1.1...v0.2.0) (2026-06-21)
 
 
