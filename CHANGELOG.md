@@ -15,4 +15,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial UPM package scaffold (folder structure, asmdefs, package manifest).
+- Core stats calculation: GUID-backed `StatId`, `StatSheet`/`RuntimeStat`, and an
+  ordered, swappable pipeline (`IStatCalculator`, `ICalculationStep`,
+  `PipelineStatCalculator`) with Flat, PercentAdd, PercentMult, Override, and
+  Clamp steps; `StatSnapshot` and `StatBreakdown`.
+- Modifier API with handle-based and source-based removal.
+- `RuntimeResource` and `MaxChangePolicy` (KeepAbsolute, KeepPercent, ClampOnly).
+- Unity authoring: `StatDefinition` (hidden serialized GUID), `StatSheetPreset`,
+  `StatModifierData`, `StatSheetBehaviour`, `StatDefinitionExtensions`.
+- Editor UX (UI Toolkit): custom inspectors, one-line percent-aware
+  `StatModifierData` drawer, and the `Tools > Stats > Validate Stat IDs` tool.
+- Timed modifiers: `TimedModifierService` over an `IExpiryScheduler` seam, with
+  Player-Loop timers copied/adapted from the GameInit package.
+- Four importable samples: Basic Entity, Item Modifiers, Timed Buff, Health
+  Resource; README and usage documentation.

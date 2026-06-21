@@ -1,0 +1,17 @@
+{
+    "name": "Stats.Samples.ItemModifiers",
+    "rootNamespace": "Stats.Samples.ItemModifiers",
+    "references": [
+        "Stats.Core",
+        "Stats.Unity"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

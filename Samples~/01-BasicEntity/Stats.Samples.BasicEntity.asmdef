@@ -1,0 +1,17 @@
+{
+    "name": "Stats.Samples.BasicEntity",
+    "rootNamespace": "Stats.Samples.BasicEntity",
+    "references": [
+        "Stats.Core",
+        "Stats.Unity"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

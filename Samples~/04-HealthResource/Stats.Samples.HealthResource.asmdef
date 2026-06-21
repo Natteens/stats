@@ -1,0 +1,17 @@
+{
+    "name": "Stats.Samples.HealthResource",
+    "rootNamespace": "Stats.Samples.HealthResource",
+    "references": [
+        "Stats.Core",
+        "Stats.Resources"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b68bd61a3a4e3bbd43216f1cdff78e, type: 3}
+  m_Name: RingOfMight
+  m_EditorClassIdentifier: 
+  itemName: Ring of Might
+  modifiers:
+  - stat: {fileID: 11400000, guid: dc8367e7319d46fd920b0ac6300152fb, type: 2}
+    operation: 100
+    value: 5
+  - stat: {fileID: 11400000, guid: dba0d7ca30dd4f42bb8f688a220ea659, type: 2}
+    operation: 200
+    value: 0.1
