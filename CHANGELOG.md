@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/Natteens/stats/compare/v0.4.0...v0.4.1) (2026-07-02)
+
+
+### Bug Fixes
+
+* Update StatSheetBehaviourEditor.cs ([9948aa3](https://github.com/Natteens/stats/commit/9948aa3ac97d4cd9f93999dc189a12a46ad5ca77))
+
 # [0.4.0](https://github.com/Natteens/stats/compare/v0.3.0...v0.4.0) (2026-07-02)
 
 
