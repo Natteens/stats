@@ -602,10 +602,16 @@ namespace Stats.Editor
             for (int i = 0; i < entries.Count; i++)
             {
                 var e = entries[i];
-                if (e.Source is string s && s.StartsWith(DebugPrefix, StringComparison.Ordinal))
+                if (IsDebugSource(e.Source))
                     sheet.RemoveModifier(e.Handle);
             }
             RefreshAll();
+        }
+
+        static bool IsDebugSource(object source)
+        {
+            string id = StatSourceId.Of(source);
+            return id != null && id.StartsWith(DebugPrefix, StringComparison.Ordinal);
         }
 
         void BuildInfoMap()
