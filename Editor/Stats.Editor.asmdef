@@ -3,7 +3,8 @@
     "rootNamespace": "Stats",
     "references": [
         "Stats.Core",
-        "Stats.Unity"
+        "Stats.Unity",
+        "Stats.Resources"
     ],
     "includePlatforms": [
         "Editor"

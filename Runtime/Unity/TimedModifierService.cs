@@ -3,6 +3,25 @@ using System.Collections.Generic;
 
 namespace Stats
 {
+    public readonly struct TimedModifierSnapshot
+    {
+        public ModifierHandle Handle { get; }
+        public StatId Stat { get; }
+        public ModifierOperation Operation { get; }
+        public float Value { get; }
+        public string SourceId { get; }
+        public float RemainingSeconds { get; }
+        public TimedModifierSnapshot(ModifierHandle handle, StatId stat, ModifierOperation operation, float value, string sourceId, float remainingSeconds)
+        {
+            Handle = handle;
+            Stat = stat;
+            Operation = operation;
+            Value = value;
+            SourceId = sourceId;
+            RemainingSeconds = remainingSeconds;
+        }
+    }
+
     public sealed class TimedModifierService
     {
         readonly IExpiryScheduler scheduler;
@@ -18,6 +37,9 @@ namespace Stats
             public StatSheet sheet;
             public ModifierHandle handle;
             public IDisposable token;
+            public ModifierOperation operation;
+            public float value;
+            public object source;
         }
 
         public ModifierHandle AddTimedModifier(StatSheet sheet, StatId stat, ModifierOperation op, float value, object source, float durationSeconds)
@@ -32,7 +54,7 @@ namespace Stats
                 sheet.RemoveModifier(handle);
                 RemoveActive(handle);
             });
-            active.Add(new Active { sheet = sheet, handle = handle, token = token });
+            active.Add(new Active { sheet = sheet, handle = handle, token = token, operation = op, value = value, source = source });
             return handle;
         }
 
@@ -46,6 +68,19 @@ namespace Stats
                 if (data.stat == null) continue;
                 AddTimedModifier(sheet, data.stat.ToStatId(), data.operation, data.value, source, durationSeconds);
             }
+        }
+
+        public IReadOnlyList<TimedModifierSnapshot> GetActiveTimedModifiers()
+        {
+            var list = new List<TimedModifierSnapshot>();
+            for (int i = 0; i < active.Count; i++)
+            {
+                var a = active[i];
+                float remaining = a.token is IExpiryHandle handle ? handle.RemainingSeconds : 0f;
+                if (remaining <= 0f) continue;
+                list.Add(new TimedModifierSnapshot(a.handle, a.handle.Stat, a.operation, a.value, StatSourceId.Of(a.source), remaining));
+            }
+            return list;
         }
 
         public void CancelSchedules()

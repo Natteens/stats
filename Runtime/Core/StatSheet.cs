@@ -92,6 +92,20 @@ namespace Stats
 
         public IReadOnlyList<StatModifier> GetModifiers(StatId stat) => Require(stat).GetModifiers();
 
+        public IReadOnlyList<StatId> GetRegisteredStats()
+        {
+            var list = new List<StatId>(stats.Count);
+            foreach (var key in stats.Keys) list.Add(key);
+            return list;
+        }
+
+        public IReadOnlyList<ModifierEntry> GetModifierEntries()
+        {
+            var list = new List<ModifierEntry>();
+            foreach (var pair in stats) pair.Value.CollectEntries(pair.Key, list);
+            return list;
+        }
+
         RuntimeStat Require(StatId stat)
         {
             if (!stats.TryGetValue(stat, out var runtime)) throw new StatNotRegisteredException(stat);

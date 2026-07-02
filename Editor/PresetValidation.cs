@@ -32,6 +32,24 @@ namespace Stats.Editor
             return result;
         }
 
+        public static List<StatDefinition> FindDuplicateKeys(IReadOnlyList<StatSheetPreset.Entry> entries)
+        {
+            var counts = new Dictionary<string, int>(System.StringComparer.Ordinal);
+            var first = new Dictionary<string, StatDefinition>(System.StringComparer.Ordinal);
+            for (int i = 0; i < entries.Count; i++)
+            {
+                var stat = entries[i].stat;
+                if (stat == null || string.IsNullOrEmpty(stat.Key)) continue;
+                counts.TryGetValue(stat.Key, out int c);
+                counts[stat.Key] = c + 1;
+                if (!first.ContainsKey(stat.Key)) first[stat.Key] = stat;
+            }
+            var result = new List<StatDefinition>();
+            foreach (var pair in counts)
+                if (pair.Value > 1) result.Add(first[pair.Key]);
+            return result;
+        }
+
         public static bool HasMinGreaterThanMax(in StatSheetPreset.Entry entry) =>
             entry.overrideMin && entry.overrideMax && entry.min > entry.max;
     }

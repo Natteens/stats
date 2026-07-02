@@ -37,10 +37,11 @@ namespace Stats.Tests
             }
         }
 
-        sealed class Token : IDisposable
+        sealed class Token : IExpiryHandle
         {
             readonly Entry entry;
             public Token(Entry entry) => this.entry = entry;
+            public float RemainingSeconds => entry.dead ? 0f : entry.remaining;
             public void Dispose()
             {
                 entry.dead = true;

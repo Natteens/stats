@@ -6,7 +6,7 @@ namespace Stats
     {
         public IDisposable Schedule(float seconds, Action onExpired) => new Handle(seconds, onExpired);
 
-        sealed class Handle : IDisposable
+        sealed class Handle : IExpiryHandle
         {
             readonly CountdownTimer timer;
             Action onExpired;
@@ -18,6 +18,8 @@ namespace Stats
                 timer.OnTimerStop += Fire;
                 timer.Start();
             }
+
+            public float RemainingSeconds => timer.CurrentTime;
 
             void Fire()
             {

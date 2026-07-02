@@ -24,6 +24,7 @@ namespace Stats
             sheet.ValueChanged += OnStatChanged;
         }
 
+        public StatId MaxStat => maxStat;
         public float Current => current;
         public float Max => sheet.GetValue(maxStat);
         public bool IsFull => current >= Max;

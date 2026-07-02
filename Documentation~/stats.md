@@ -106,6 +106,84 @@ Runtime/API values are fractions (`0.5` = +50%). The inspector drawer is the
 single converter: a designer types `50` and `0.5` is stored. Never convert
 percent anywhere else.
 
+## Stat keys
+
+A `StatDefinition` carries three separate concepts:
+
+- `Id` (`StatId`): hidden GUID, the stable identity used everywhere internally
+  and for save/restore. Do not migrate this to a string.
+- `Key`: an optional, authored `snake_case` string for gameplay lookups.
+- `DisplayName`: the UI label, never used for lookup.
+
+When to use which: use `StatId` for registration, modifiers on hot paths, and
+persistence; use the key for readable gameplay code; never look up by display
+name (it is a localizable label that can change).
+
+```csharp
+// preset / definition
+StatId id = preset.TryGetStatIdByKey("movement_speed", out var s) ? s : StatId.Empty;
+
+// behaviour convenience (cached key -> StatId, ordinal comparison)
+float speed = behaviour.GetValue("movement_speed");
+behaviour.AddPercentAdd("movement_speed", 0.1f, buff);   // throws KeyNotFoundException if key unknown
+```
+
+Rules: keys are lowercase `snake_case`, stable, and distinct from the display
+name. The editor can suggest a key from the display name when empty but never
+overwrites a key you have set and never regenerates it on rename. An empty key
+simply means the stat is not findable by key (it still builds and works by
+`StatId`). Duplicate keys in one preset are reported in the editor and the runtime
+cache deterministically keeps the first entry. Save/restore still keys off the
+GUID `statId`; the DTO `statKey` is debug-only and not used on restore, and old
+save data without `statKey` remains valid.
+
+## Save / restore interop
+
+Stats never touches the filesystem. It captures runtime state into plain
+`[Serializable]` DTOs that an external save system persists, then restores from
+them. No reflection is required by callers.
+
+Behaviour-level (composes bases, non-timed modifiers, timed modifiers, and
+registered resources):
+
+```csharp
+StatSheetSaveData data = behaviour.CaptureSaveData();
+behaviour.RestoreSaveData(data);
+```
+
+Core-only (engine-free, base values and non-timed modifiers):
+
+```csharp
+StatSheetSaveData data = StatSaveInterop.Capture(sheet);
+StatSaveInterop.Restore(sheet, data);
+```
+
+DTO shape:
+
+- `StatSheetSaveData { int version; List<StatBaseSaveData> bases;
+  List<StatModifierSaveData> modifiers; List<RuntimeResourceSaveData> resources; }`
+- `StatBaseSaveData { string statId; float baseValue; }`
+- `StatModifierSaveData { string statId; int operation; float value;
+  string sourceId; bool timed; float remainingSeconds; int order; }`
+- `RuntimeResourceSaveData { string key; string maxStatId; float current; }`
+
+`statId` is the stable `StatId` GUID string. No `UnityEngine.Object` or
+ScriptableObject references are stored, and runtime handles are never persisted.
+
+Source identity: capture stores a `sourceId` derived from a `string` source or an
+`IStatModifierSource.SourceId`. A modifier whose source is a plain `object` is not
+captured (treated as transient and re-applied by your own equip logic on load).
+Restored modifiers are given a `RestoredSource` carrying the saved id, so a buff
+survives even if its original source object was destroyed.
+
+Restore order is deterministic: clear current modifiers, apply base values, apply
+non-timed modifiers sorted by `order` (so the last override wins as before),
+reschedule timed modifiers with `remainingSeconds`, then set resource current
+values last (after max-stat modifiers are in place so clamping is correct).
+Saved entries for stats that are not registered on the rebuilt sheet are skipped.
+
+Register a resource for capture with `behaviour.RegisterResource(key, resource)`.
+
 ## Troubleshooting
 
 - `StatNotRegisteredException` when reading a stat: the `StatId` was not

@@ -7,6 +7,7 @@ namespace Stats
     {
         [SerializeField, HideInInspector] private string id;
         [SerializeField] private string displayName;
+        [SerializeField] private string key;
         [SerializeField] private float defaultBase;
         [SerializeField] private bool hasMin;
         [SerializeField] private float min;
@@ -16,6 +17,7 @@ namespace Stats
         [SerializeField, HideInInspector] private string description;
 
         public string DisplayName => displayName;
+        public string Key => key;
         public float DefaultBase => defaultBase;
         public float Min => hasMin ? min : float.NegativeInfinity;
         public float Max => hasMax ? max : float.PositiveInfinity;
@@ -24,7 +26,8 @@ namespace Stats
 
         public StatId Id => string.IsNullOrEmpty(id) ? StatId.Empty : StatId.FromString(id);
 
-        // Editor-time identity: assign once when missing; never regenerate on rename/revalidation.
+        // Editor-time identity: assign the GUID once when missing. The human key is never
+        // auto-generated or overwritten here; it is authored/suggested through the editor.
         private void OnValidate()
         {
             if (string.IsNullOrEmpty(id))

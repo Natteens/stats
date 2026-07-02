@@ -93,6 +93,12 @@ namespace Stats
             MarkDirtyAndNotify();
         }
 
+        internal void CollectEntries(StatId stat, List<ModifierEntry> output)
+        {
+            for (int i = 0; i < modifiers.Count; i++)
+                output.Add(new ModifierEntry(new ModifierHandle(stat, ids[i]), modifiers[i].Operation, modifiers[i].Value, modifiers[i].Source));
+        }
+
         public IReadOnlyList<StatModifier> GetModifiers() => modifiers.ToArray();
 
         public StatSnapshot GetSnapshot()

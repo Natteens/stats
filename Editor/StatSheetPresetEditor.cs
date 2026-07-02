@@ -118,6 +118,7 @@ namespace Stats.Editor
                 Show(empty, size == 0);
 
                 var duplicates = DuplicateIndices(entriesProp);
+                var duplicateKeys = DuplicateKeyIndices(entriesProp);
                 for (int i = 0; i < size; i++)
                 {
                     var entry = entriesProp.GetArrayElementAtIndex(i);
@@ -135,6 +136,7 @@ namespace Stats.Editor
                     var messages = new List<string>();
                     if (missing) messages.Add("Missing stat");
                     if (duplicates.Contains(i)) messages.Add("Duplicate stat");
+                    if (duplicateKeys.Contains(i)) messages.Add("Duplicate key");
                     if (badRange) messages.Add("Min is greater than max");
                     warning.text = string.Join("  |  ", messages);
                     Show(warning, messages.Count > 0);
@@ -205,6 +207,20 @@ namespace Stats.Editor
                 string key = id.ToString();
                 if (seen.TryGetValue(key, out int first)) { duplicates.Add(first); duplicates.Add(i); }
                 else seen[key] = i;
+            }
+            return duplicates;
+        }
+
+        static HashSet<int> DuplicateKeyIndices(SerializedProperty entriesProp)
+        {
+            var seen = new Dictionary<string, int>(System.StringComparer.Ordinal);
+            var duplicates = new HashSet<int>();
+            for (int i = 0; i < entriesProp.arraySize; i++)
+            {
+                var stat = entriesProp.GetArrayElementAtIndex(i).FindPropertyRelative("stat").objectReferenceValue as StatDefinition;
+                if (stat == null || string.IsNullOrEmpty(stat.Key)) continue;
+                if (seen.TryGetValue(stat.Key, out int first)) { duplicates.Add(first); duplicates.Add(i); }
+                else seen[stat.Key] = i;
             }
             return duplicates;
         }

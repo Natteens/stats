@@ -12,6 +12,11 @@
                 <ui:Label text="Display Name" class="sd-row-label" />
                 <ui:TextField name="sd-displayname" binding-path="displayName" class="sd-row-field" />
             </ui:VisualElement>
+            <ui:VisualElement class="sd-simple-row stats-field-row">
+                <ui:Label text="Key" class="sd-row-label" />
+                <ui:TextField name="sd-key" binding-path="key" class="sd-row-field" />
+            </ui:VisualElement>
+            <ui:Label text="Key = gameplay code lookup (snake_case). Display Name = UI label. ID = internal GUID." class="stats-help" />
         </ui:VisualElement>
         <ui:VisualElement class="stats-card">
             <ui:Label text="Value" class="stats-section-header" />
@@ -38,8 +43,11 @@
             <ui:HelpBox name="sd-warn-minmax" text="Clamp Min is greater than Clamp Max." />
             <ui:HelpBox name="sd-warn-id" text="This stat has no ID. Use Repair Missing ID." />
             <ui:HelpBox name="sd-warn-dup" text="Duplicate ID detected. Use Regenerate ID." />
+            <ui:HelpBox name="sd-warn-key" text="No key set: this stat cannot be looked up by key." />
+            <ui:HelpBox name="sd-warn-keydup" text="Another Stat Definition already uses this key." />
         </ui:VisualElement>
         <ui:VisualElement class="stats-toolbar">
+            <ui:Button name="sd-suggest" text="Suggest Key" />
             <ui:Button name="sd-repair" text="Repair Missing ID" />
             <ui:Button name="sd-regen" text="Regenerate ID" />
         </ui:VisualElement>

@@ -34,5 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `StatModifierData` drawer, and the `Tools > Stats > Validate Stat IDs` tool.
 - Timed modifiers: `TimedModifierService` over an `IExpiryScheduler` seam, with
   Player-Loop timers copied/adapted from the GameInit package.
+- Human-readable stat keys: `StatDefinition.Key` (authored lowercase snake_case, separate from the display name and the GUID `StatId`), key lookup on `StatSheetPreset` (`TryGetDefinitionByKey`/`TryGetStatIdByKey`) and `StatSheetBehaviour` (`TryGetStatId`/`TryGetValue`/`GetValue` and `AddFlat`/`AddPercentAdd`/`AddPercentMult`/`AddOverride` by key), a cached ordinal key->StatId map, editor key field with suggest/validation, and key-duplicate checks. GUID-backed `StatId` remains the identity and save-restore source of truth; existing assets and save data without keys remain valid.
+- Save/restore interop: serializable DTOs (`StatSheetSaveData` and related), `StatSaveInterop` / `ResourceSaveInterop` / `StatSheetSaveUtility`, `IStatModifierSource` + `RestoredSource` source identity, and timed-modifier remaining-time capture/restore. Stats produces and consumes the DTOs; an external system persists them (no file I/O in this package).
 - Four importable samples: Basic Entity, Item Modifiers, Timed Buff, Health
   Resource; README and usage documentation.

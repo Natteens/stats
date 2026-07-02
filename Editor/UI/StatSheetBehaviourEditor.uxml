@@ -3,35 +3,12 @@
         <ui:VisualElement class="stats-card stats-header-card">
             <ui:VisualElement class="stats-header-row">
                 <ui:VisualElement class="stats-header-copy">
-                    <ui:Label text="Stat Sheet Behaviour" class="stats-title" />
-                    <ui:Label text="Runtime stats from a preset." class="stats-subtitle" />
+                    <ui:Label text="Stats Component" class="stats-title" />
+                    <ui:Label text="Runtime StatSheet holder" class="stats-subtitle" />
                 </ui:VisualElement>
                 <ui:Label name="ssb-mode" class="stats-pill" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="ssb-edit-content">
-            <ui:VisualElement class="stats-card">
-                <uie:PropertyField name="ssb-preset" binding-path="preset" label="Preset" />
-                <ui:HelpBox name="ssb-warn-preset" text="Preset is missing. An empty StatSheet will be built on Awake." />
-                <ui:Label text="Runtime StatSheet is built from this preset on Awake." class="stats-help" />
-            </ui:VisualElement>
-            <ui:VisualElement class="stats-card">
-                <ui:VisualElement class="stats-header-row ssb-section-heading">
-                    <ui:Label text="Preview" class="stats-section-header ssb-heading-label" />
-                    <ui:Label name="ssb-preview-count" class="stats-pill stats-pill-info" />
-                </ui:VisualElement>
-                <ui:VisualElement name="ssb-preview" />
-                <ui:Label name="ssb-preview-empty" class="stats-empty" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="ssb-runtime" class="stats-card">
-            <ui:VisualElement class="stats-header-row ssb-section-heading">
-                <ui:Label text="Runtime Debug" class="stats-section-header ssb-heading-label" />
-                <ui:Label name="ssb-runtime-count" class="stats-pill stats-pill-info" />
-                <ui:Button name="ssb-refresh" text="Refresh" class="ssb-refresh" />
-            </ui:VisualElement>
-            <ui:VisualElement name="ssb-readout" />
-            <ui:Label name="ssb-runtime-empty" class="stats-empty" />
-        </ui:VisualElement>
+        <ui:VisualElement name="ssb-body" />
     </ui:VisualElement>
 </ui:UXML>

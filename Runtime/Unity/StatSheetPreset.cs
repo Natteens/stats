@@ -35,5 +35,33 @@ namespace Stats
             }
             return sheet;
         }
+
+        public bool TryGetDefinitionByKey(string key, out StatDefinition definition)
+        {
+            definition = null;
+            if (string.IsNullOrEmpty(key)) return false;
+            for (int i = 0; i < entries.Length; i++)
+            {
+                var candidate = entries[i].stat;
+                if (candidate == null || string.IsNullOrEmpty(candidate.Key)) continue;
+                if (string.Equals(candidate.Key, key, StringComparison.Ordinal))
+                {
+                    definition = candidate;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool TryGetStatIdByKey(string key, out StatId statId)
+        {
+            if (TryGetDefinitionByKey(key, out var definition))
+            {
+                statId = definition.ToStatId();
+                return true;
+            }
+            statId = StatId.Empty;
+            return false;
+        }
     }
 }

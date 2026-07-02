@@ -68,6 +68,33 @@ is never regenerated on rename. It is independent of Unity's instance/asset IDs.
 Duplicating an asset copies its GUID; run `Tools > Stats > Validate Stat IDs` to
 find and repair missing or duplicate IDs.
 
+## Human-readable keys
+
+Each `StatDefinition` has three distinct fields:
+
+- **ID** — a hidden, stable GUID (`StatId`). The source of truth for identity,
+  registration, and save/restore. Never changes.
+- **Key** — an authored, lowercase `snake_case` string (e.g. `movement_speed`)
+  for readable gameplay lookups. Optional; independent of the display name.
+- **Display Name** — the UI label (e.g. `Movement Speed`). Never used as a key.
+
+Use `StatId` (via `def.ToStatId()`) for identity, storage, and hot paths. Use the
+key for convenience in gameplay code:
+
+```csharp
+float speed = statSheetBehaviour.GetValue("movement_speed");
+statSheetBehaviour.AddFlat("movement_speed", 2f, boots);
+```
+
+`StatSheetBehaviour` builds a `key -> StatId` cache on `Awake` (ordinal string
+comparison). Lookups (`TryGetStatId`, `TryGetValue`, `GetValue`) return
+false/fallback for unknown keys; the `Add*(string key, ...)` helpers throw
+`KeyNotFoundException` for an unknown key. `StatSheetPreset` exposes
+`TryGetDefinitionByKey` / `TryGetStatIdByKey`. Keys are never derived from the
+display name or asset name at runtime, and changing the display name never
+changes the key. Save/restore always uses the GUID `statId`; a `statKey` field in
+the DTOs is debug-only and ignored on restore.
+
 ## StatSheetPreset
 
 An authoring asset listing definitions with base values and optional min/max
@@ -121,6 +148,31 @@ bool spent = health.Consume(25f);   // spends if available
 when the max changes: `KeepAbsolute` (current unchanged, re-clamped),
 `KeepPercent` (preserves the ratio), `ClampOnly` (only trims overflow). Events:
 `Changed(current, max)` and `Emptied`.
+
+## Save / restore (interop)
+
+Stats does not write files. It exposes serializable DTOs so an external save
+system can persist and reload runtime state.
+
+```csharp
+StatSheetSaveData data = statSheetBehaviour.CaptureSaveData();
+// your save system serializes `data` (e.g. JSON) ...
+statSheetBehaviour.RestoreSaveData(data);   // after the sheet is built from its preset
+```
+
+`StatSheetSaveData` holds a version, base values, active modifiers (operation,
+value, source id, order), timed modifiers (with remaining seconds), and
+registered resource current values. For the pure-core path,
+`StatSaveInterop.Capture(StatSheet)` / `Restore(StatSheet, data)` work without Unity.
+
+Source identity: a modifier is persisted only if its source is a `string` or
+implements `IStatModifierSource` (a stable `SourceId`). Modifiers whose source is
+a plain `object` are treated as transient and are not captured, so equipment you
+re-apply on load is not double-restored. Restored modifiers use a `RestoredSource`,
+so a consumable's timed buff is restored even when the original consumable object
+is gone. Register resources to capture with `RegisterResource(key, resource)`.
+Restore clears current modifiers, reapplies bases and modifiers, restores timed
+modifiers with their remaining time, then restores resource current values.
 
 ## Limitations / non-goals
 
